@@ -2,10 +2,10 @@ package com.onlinepoll.onlinepoll.controller;
 
 import com.onlinepoll.onlinepoll.model.Poll;
 import com.onlinepoll.onlinepoll.services.PollService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/polls")
@@ -18,8 +18,18 @@ public class PollController {
 
     @PostMapping("/")
     public Poll createPoll(@RequestBody Poll poll) {
-        System.out.println("Create Poll" + poll);
         return pollService.createPoll(poll);
+    }
+
+    @GetMapping("/")
+    public List<Poll> getAllPolls() {
+        return pollService.getAllPolls();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Poll> getPollById(@PathVariable Long id) {
+        return pollService.getPollById(id).map(ResponseEntity::ok).
+                orElse(ResponseEntity.notFound().build());
     }
 
 }
