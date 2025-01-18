@@ -7,7 +7,7 @@ import { Poll } from './poll.model';
   providedIn: 'root'
 })
 export class PollService {
-  private baseUrl='http://localhost:8080/api/polls';  
+  private baseUrl='http://localhost:8080/api/polls/';  
   constructor(private http:HttpClient) { } 
   createPoll(poll: Poll): Observable<Object> {
     return this.http.post(`${this.baseUrl}`, poll);

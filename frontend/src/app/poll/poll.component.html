@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h2 class="text-center mt-4">Available Polls</h2>
+  <div class="polls-list">
+    <div class="border rounded p-3 mb-3" *ngFor="let poll of polls">
+      <h3>{{ poll.question }}</h3>
+      <div class="options-list">
+        <div class="" *ngFor="let option of poll.options">
+          <button class="btn btn-outline-primary me-2 mt-2">
+            {{ option.voteText }} ({{ option.voteCount }} votes)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
